@@ -19,13 +19,13 @@ databaseChangeLog:
                   constraints:
                     primaryKey: true
               - column:
-                  name: article
+                  name: product_article
                   remarks: "Артикул товара"
                   type: int
                   constraints:
                     nullable: false
               - column:
-                  name: name
+                  name: product_name
                   remarks: "Наименование товара"
                   type: varchar(64)
                   constraints:

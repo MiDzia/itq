@@ -4,6 +4,7 @@ package by.walker.orders.mapper;
 import by.walker.orders.dto.OrderCreateDto;
 import by.walker.orders.dto.OrderDto;
 import by.walker.orders.model.Order;
+import by.walker.orders.model.OrderDetails;
 import by.walker.orders.model.TypeOfDelivery;
 import by.walker.orders.model.TypeOfPayment;
 import java.sql.Timestamp;
@@ -39,11 +40,10 @@ public class OrderMapper {
 
     public Order toOrder(OrderCreateDto dto) {
         Order order = new Order();
-        order.setTotalAmount(dto.total_amount());
         order.setRecipient(dto.recipient());
-        order.setDeliveryAddress(dto.delivery_address());
-        order.setTypeOfPayment(TypeOfPayment.valueOf(dto.type_of_payment()));
-        order.setTypeOfDelivery(TypeOfDelivery.valueOf(dto.type_of_delivery()));
+        order.setDeliveryAddress(dto.deliveryAddress());
+        order.setTypeOfPayment(TypeOfPayment.valueOf(dto.typeOfPayment()));
+        order.setTypeOfDelivery(TypeOfDelivery.valueOf(dto.typeOfDelivery()));
         return order;
     }
 }

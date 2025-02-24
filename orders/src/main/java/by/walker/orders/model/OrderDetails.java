@@ -5,8 +5,8 @@ import java.util.Objects;
 public class OrderDetails {
 
     private Long id;
-    private Integer article;
-    private String name;
+    private Integer productArticle;
+    private String productName;
     private Integer amount;
     private Long unitPrice;
     private Long orderId;
@@ -19,20 +19,20 @@ public class OrderDetails {
         this.id = id;
     }
 
-    public Integer getArticle() {
-        return article;
+    public Integer getProductArticle() {
+        return productArticle;
     }
 
-    public void setArticle(Integer article) {
-        this.article = article;
+    public void setProductArticle(Integer productArticle) {
+        this.productArticle = productArticle;
     }
 
-    public String getName() {
-        return name;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
     public Integer getAmount() {
@@ -61,8 +61,8 @@ public class OrderDetails {
 
     public OrderDetails(Long id, Integer article, String name, Integer amount, Long unitPrice, Long orderId) {
         this.id = id;
-        this.article = article;
-        this.name = name;
+        this.productArticle = article;
+        this.productName = name;
         this.amount = amount;
         this.unitPrice = unitPrice;
         this.orderId = orderId;
@@ -76,22 +76,22 @@ public class OrderDetails {
         if (!(o instanceof OrderDetails that)) {
             return false;
         }
-        return Objects.equals(id, that.id) && Objects.equals(article, that.article)
-               && Objects.equals(name, that.name) && Objects.equals(amount, that.amount)
+        return Objects.equals(id, that.id) && Objects.equals(productArticle, that.productArticle)
+               && Objects.equals(productName, that.productName) && Objects.equals(amount, that.amount)
                && Objects.equals(unitPrice, that.unitPrice) && Objects.equals(orderId, that.orderId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, article, name, amount, unitPrice, orderId);
+        return Objects.hash(id, productArticle, productName, amount, unitPrice, orderId);
     }
 
     @Override
     public String toString() {
         return "OrderDetails{" +
                "id=" + id +
-               ", article=" + article +
-               ", name='" + name + '\'' +
+               ", article=" + productArticle +
+               ", name='" + productName + '\'' +
                ", amount=" + amount +
                ", unitPrice=" + unitPrice +
                ", orderId=" + orderId +
