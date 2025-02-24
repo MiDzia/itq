@@ -39,7 +39,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
         <configuration>
-          <mainClass>by.walker.orders.OrdersApplication</mainClass>
+          <mainClass>by.walker.generator_number.GeneratorNumberApplication</mainClass>
         </configuration>
       </plugin>
     </plugins>
