@@ -19,4 +19,4 @@ orders 8083.
 ## Swagger
 
 - Для доступа к Swagger UI откройте в браузере:
-http://localhost:8083/swagger-ui/
+http://localhost:8083/swagger-ui/index.html
