@@ -1,0 +1,53 @@
+databaseChangeLog:
+  - changeSet:
+      id: table_orders
+      author: Mihail_Dezhko
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            - tableExists:
+                tableName: orders
+      changes:
+        - createTable:
+            tableName: orders
+            remarks: " Заказы"
+            columns:
+              - column:
+                  name: id
+                  remarks: "Идентификатор заказа"
+                  type: bigserial
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: number_of_order
+                  remarks: "Номер заказа"
+                  type: varchar(14)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: total_amount
+                  remarks: "Общая сумма заказа"
+                  type: bigint
+              - column:
+                  name: date
+                  remarks: "Дата заказа"
+                  type: timestamp
+              - column:
+                  name: recipient
+                  remarks: "Получатель"
+                  type: varchar(64)
+              - column:
+                  name: delivery_address
+                  remarks: "Адрес доставки"
+                  type: varchar(256)
+              - column:
+                  name: type_of_payment
+                  remarks: "Тип оплаты"
+                  type: varchar(32)
+              - column:
+                  name: type_of_delivery
+                  remarks: "Тип доставки"
+                  type: varchar(32)
+      rollback:
+        - dropTable:
+            tableName: orders

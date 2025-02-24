@@ -1,0 +1,14 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: generator_number
+
+  data:
+    redis:
+      host: redisdb
+      port: 6379
+
+  number:
+    dateFormat: "YYYYMMdd"
+    numberFormat: "%05d%s"

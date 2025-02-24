@@ -1,0 +1,28 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: orders
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ordersdb
+    username: postgres
+    password: root
+    driver-class-name: org.postgresql.Driver
+
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.yaml
+    enabled: true
+
+  external-api: "http://localhost:8082/numbers"
+
+  pattern:
+    date: "yyyy-MM-dd"
+    time: "HH:mm"
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    path: /swagger-ui.html

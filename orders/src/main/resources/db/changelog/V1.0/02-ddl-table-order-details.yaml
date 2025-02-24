@@ -1,0 +1,57 @@
+databaseChangeLog:
+  - changeSet:
+      id: table_order_details
+      author: Mihail_Dezhko
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            - tableExists:
+                tableName: order_details
+      changes:
+        - createTable:
+            tableName: order_details
+            remarks: "Детали заказа"
+            columns:
+              - column:
+                  name: id
+                  remarks: "Идентификатор записи"
+                  type: bigserial
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: article
+                  remarks: "Артикул товара"
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  remarks: "Наименование товара"
+                  type: varchar(64)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: amount
+                  remarks: "Количество"
+                  type: int
+              - column:
+                  name: unit_price
+                  remarks: "Стоимость единицы товара"
+                  type: bigint
+              - column:
+                  name: order_id
+                  remarks: "Идентификатор заказа"
+                  type: bigint
+      rollback:
+        - dropTable:
+            tableName: order_details
+  - changeSet:
+      id: constraint-add-fkey-orders-id
+      author: Mihail_Dezhko
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: order_id
+            baseTableName: order_details
+            constraintName: order_id_fkey
+            referencedTableName: orders
+            referencedColumnNames: id

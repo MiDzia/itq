@@ -1,0 +1,5 @@
+databaseChangeLog:
+  - include:
+      file: classpath:db/changelog/V1.0/01-ddl-table-orders.yaml
+  - include:
+      file: classpath:db/changelog/V1.0/02-ddl-table-order-details.yaml

@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:7.0
+    container_name: redisdb
+    ports:
+      - "6379:6379"
+    networks:
+      - app-network
+
+  generator:
+    build:
+      context: ./generator_number
+      dockerfile: Dockerfile
+    container_name: generator
+    ports:
+      - "8082:8082"
+    depends_on:
+      - redis
+    environment:
+      - REDIS_HOST=redisdb
+    networks:
+      - app-network
+
+  postgres:
+    image: postgres:15
+    container_name: postgres
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: ordersdb
+    depends_on:
+      - generator
+    networks:
+      - app-network
+
+  orders:
+    build:
+      context: ./orders
+      dockerfile: Dockerfile
+    ports:
+      - "8083:8083"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/ordersdb
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=root
+      - EXTERNAL-API="http://generator:8082/numbers"
+    depends_on:
+      - postgres
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
